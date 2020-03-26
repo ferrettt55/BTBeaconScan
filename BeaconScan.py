@@ -1,6 +1,7 @@
 #Uses beacontools library by citruz: https://github.com/citruz/beacontools
 #and PyBluez: https://pypi.org/project/PyBluez/
 #Code base from https://github.com/citruz/beacontools/blob/master/examples/scanner_ibeacon_example.py
+#and: https://github.com/citruz/beacontools/issues/16#issuecomment-382669104
 #Last edited by ferrettt55: 2020-03-26
 
 import time
@@ -23,16 +24,10 @@ listA1 = [];
 #define function "callback" which prints BT info
 #need a copy for each beacon to scan
 def callbackA0(bt_addr, rssi, packet, additional_info):
-    if (rssi == 0):
-        listA0.append(0);
-    else:
-        listA0.append(rssi);
+    listA0.append(rssi);
 
 def callbackA1(bt_addr, rssi, packet, additional_info):
-    if (rssi == 0):
-        listA1.append(0);
-    else:
-        listA1.append(rssi);
+    listA1.append(rssi);
 
 #scan for iBeacon advertisements from beacons with the specified address
 scannerA0 = BeaconScanner(callbackA0,device_filter=BtAddrFilter(bt_addr=addrA0))
